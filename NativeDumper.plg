@@ -1,0 +1,113 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: NativeDumper - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x409 /fo"Release/NativeDumper.res" /d "NDEBUG" /d "_AFXDLL" "D:\NewProjects\Native\NativeDumper\NativeDumper.rc"" 
+Creating temporary file "C:\Users\Mihai\AppData\Local\Temp\RSP5AEC.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/NativeDumper.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\NewProjects\Native\NativeDumper\DumpModuleDlg.cpp"
+"D:\NewProjects\Native\NativeDumper\GenericPurposeMethods.cpp"
+"D:\NewProjects\Native\NativeDumper\ModulesDlg.cpp"
+"D:\NewProjects\Native\NativeDumper\NativeDumper.cpp"
+"D:\NewProjects\Native\NativeDumper\NativeDumperDlg.cpp"
+"D:\NewProjects\Native\NativeDumper\NewEdit.cpp"
+]
+Creating command line "cl.exe @C:\Users\Mihai\AppData\Local\Temp\RSP5AEC.tmp" 
+Creating temporary file "C:\Users\Mihai\AppData\Local\Temp\RSP5AED.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/NativeDumper.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\NewProjects\Native\NativeDumper\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\Users\Mihai\AppData\Local\Temp\RSP5AED.tmp" 
+Creating temporary file "C:\Users\Mihai\AppData\Local\Temp\RSP5AEE.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:no /pdb:"Release/NativeDumper.pdb" /machine:I386 /out:"Release/NativeDumper.exe" 
+.\Release\DumpModuleDlg.obj
+.\Release\GenericPurposeMethods.obj
+.\Release\ModulesDlg.obj
+.\Release\NativeDumper.obj
+.\Release\NativeDumperDlg.obj
+.\Release\NewEdit.obj
+.\Release\StdAfx.obj
+.\Release\NativeDumper.res
+]
+Creating command line "link.exe @C:\Users\Mihai\AppData\Local\Temp\RSP5AEE.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+DumpModuleDlg.cpp
+GenericPurposeMethods.cpp
+ModulesDlg.cpp
+NativeDumper.cpp
+NativeDumperDlg.cpp
+NewEdit.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+NativeDumper.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: NativeDumper - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x409 /fo"Debug/NativeDumper.res" /d "_DEBUG" /d "_AFXDLL" "D:\NewProjects\Native\NativeDumper\NativeDumper.rc"" 
+Creating temporary file "C:\Users\Mihai\AppData\Local\Temp\RSP5F43.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/NativeDumper.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\NewProjects\Native\NativeDumper\DumpModuleDlg.cpp"
+"D:\NewProjects\Native\NativeDumper\GenericPurposeMethods.cpp"
+"D:\NewProjects\Native\NativeDumper\ModulesDlg.cpp"
+"D:\NewProjects\Native\NativeDumper\NativeDumper.cpp"
+"D:\NewProjects\Native\NativeDumper\NativeDumperDlg.cpp"
+"D:\NewProjects\Native\NativeDumper\NewEdit.cpp"
+]
+Creating command line "cl.exe @C:\Users\Mihai\AppData\Local\Temp\RSP5F43.tmp" 
+Creating temporary file "C:\Users\Mihai\AppData\Local\Temp\RSP5F44.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/NativeDumper.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\NewProjects\Native\NativeDumper\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\Users\Mihai\AppData\Local\Temp\RSP5F44.tmp" 
+Creating temporary file "C:\Users\Mihai\AppData\Local\Temp\RSP5F45.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/NativeDumper.pdb" /debug /machine:I386 /out:"Debug/NativeDumper.exe" /pdbtype:sept 
+.\Debug\DumpModuleDlg.obj
+.\Debug\GenericPurposeMethods.obj
+.\Debug\ModulesDlg.obj
+.\Debug\NativeDumper.obj
+.\Debug\NativeDumperDlg.obj
+.\Debug\NewEdit.obj
+.\Debug\StdAfx.obj
+.\Debug\NativeDumper.res
+]
+Creating command line "link.exe @C:\Users\Mihai\AppData\Local\Temp\RSP5F45.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+DumpModuleDlg.cpp
+GenericPurposeMethods.cpp
+ModulesDlg.cpp
+NativeDumper.cpp
+NativeDumperDlg.cpp
+NewEdit.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+NativeDumper.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
