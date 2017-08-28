@@ -83,21 +83,36 @@ BEGIN
                     WS_TABSTOP,7,7,306,299
 END
 
-IDD_DUMPMODULEDLG_DIALOG DIALOG DISCARDABLE  0, 0, 194, 113
+IDD_DUMPMODULEDLG_DIALOG DIALOG DISCARDABLE  0, 0, 198, 160
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Dump module "
 FONT 8, "MS Sans Serif"
 BEGIN
     CONTROL         "Change EP",IDC_CHANGEEP,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,22,14,52,10
+                    WS_TABSTOP,75,36,52,10
     CONTROL         "Fix SizeOfImage",IDC_FixSizeOfImage,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,81,15,67,10
-    LTEXT           "New EntryPoint:",IDC_STATIC,21,27,52,8
-    EDITTEXT        IDC_NEWEntryPoint,21,40,102,13,ES_AUTOHSCROLL
-    PUSHBUTTON      "Dump",IDC_DumpBTN,23,80,42,12
-    LTEXT           "Status",IDC_STATUS_ST,20,95,121,8
-    CONTROL         "Fix Raw",IDC_FIXRAW,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,23,59,70,13
+                    BS_AUTOCHECKBOX | WS_TABSTOP,24,17,67,10
+    LTEXT           "New EntryPoint:",IDC_STATIC,75,46,52,8
+    EDITTEXT        IDC_NEWEntryPoint,73,57,86,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "Dump",IDC_DumpBTN,24,130,42,12
+    LTEXT           "Status",IDC_STATUS_ST,19,150,121,8
+    CONTROL         "Round raw size",IDC_ROUND_RAW_SIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,93,18,65,10
+    CONTROL         "Original raw",IDC_ORIGINAL_RAW,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,29,113,53,10
+    CONTROL         "RAW=VA",IDC_RAW_EQ_VA,"Button",BS_AUTORADIOBUTTON,81,
+                    113,47,10
+    CONTROL         "Calculate raw",IDC_CALCULATE_RAW,"Button",
+                    BS_AUTORADIOBUTTON,129,113,59,10
+    CONTROL         "Memory",IDC_SECTIONS_FROM_MEMORY,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,30,87,41,10
+    GROUPBOX        "Sections info from:",IDC_STATIC,24,79,101,23
+    CONTROL         "File",IDC_SECTIONS_FROM_FILE,"Button",
+                    BS_AUTORADIOBUTTON,77,87,27,10
+    PUSHBUTTON      "Current EIP",IDC_BUT_CURRENT_EIP,23,57,46,14
+    GROUPBOX        "Raw",IDC_STATIC,13,103,181,27
+    CONTROL         "Fix packers",IDC_FIX_PACKERS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,24,37,52,10
 END
 
 IDD_MODULES DIALOG DISCARDABLE  0, 0, 320, 313
@@ -172,7 +187,9 @@ BEGIN
     IDD_DUMPMODULEDLG_DIALOG, DIALOG
     BEGIN
         LEFTMARGIN, 7
+        RIGHTMARGIN, 194
         TOPMARGIN, 7
+        BOTTOMMARGIN, 150
     END
 
     IDD_MODULES, DIALOG

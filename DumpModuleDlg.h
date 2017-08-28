@@ -19,7 +19,11 @@ public:
 	DumpModuleDlg(CWnd* pParent = NULL);   // standard constructor
 	DumpModuleDlg& operator=(DumpModuleDlg& right); // Overload Assignment Operator
 	void DumpModule(TCHAR filename[]);
+	DWORD GetMainThreadId(DWORD dwPid);
+	unsigned int GetModuleSize(HMODULE hMod);
+	unsigned int GetEIPRegister();
 	unsigned int GetEntryPoint();
+	void LastErrorDisplay();
 
 	int processid;
 	CString processname;
@@ -49,6 +53,7 @@ protected:
 	afx_msg void OnClose();
 	virtual BOOL OnInitDialog();
 	afx_msg void OnDumpBTN();
+	afx_msg void OnButCurrentEip();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
