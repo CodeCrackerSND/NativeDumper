@@ -3,40 +3,40 @@
 <pre>
 <h1>Build Log</h1>
 <h3>
---------------------Configuration: NativeDumper - Win32 Debug--------------------
+--------------------Configuration: NativeDumper - Win32 Release--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating command line "rc.exe /l 0x409 /fo"Debug/NativeDumper.res" /d "_DEBUG" /d "_AFXDLL" "D:\NewProjects\Native\NativeDumper\NativeDumper.rc"" 
-Creating temporary file "C:\Users\Mihai\AppData\Local\Temp\RSPA490.tmp" with contents
+Creating command line "rc.exe /l 0x409 /fo"Release/NativeDumper.res" /d "NDEBUG" /d "_AFXDLL" "D:\ProjectNew\Native\NativeDumper\NativeDumper.rc"" 
+Creating temporary file "C:\Users\Elev\AppData\Local\Temp\RSP5901.tmp" with contents
 [
-/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/NativeDumper.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"D:\NewProjects\Native\NativeDumper\DumpModuleDlg.cpp"
-"D:\NewProjects\Native\NativeDumper\GenericPurposeMethods.cpp"
-"D:\NewProjects\Native\NativeDumper\ModulesDlg.cpp"
-"D:\NewProjects\Native\NativeDumper\NativeDumper.cpp"
-"D:\NewProjects\Native\NativeDumper\NativeDumperDlg.cpp"
-"D:\NewProjects\Native\NativeDumper\NewEdit.cpp"
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/NativeDumper.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\ProjectNew\Native\NativeDumper\DumpModuleDlg.cpp"
+"D:\ProjectNew\Native\NativeDumper\GenericPurposeMethods.cpp"
+"D:\ProjectNew\Native\NativeDumper\ModulesDlg.cpp"
+"D:\ProjectNew\Native\NativeDumper\NativeDumper.cpp"
+"D:\ProjectNew\Native\NativeDumper\NativeDumperDlg.cpp"
+"D:\ProjectNew\Native\NativeDumper\NewEdit.cpp"
 ]
-Creating command line "cl.exe @C:\Users\Mihai\AppData\Local\Temp\RSPA490.tmp" 
-Creating temporary file "C:\Users\Mihai\AppData\Local\Temp\RSPA491.tmp" with contents
+Creating command line "cl.exe @C:\Users\Elev\AppData\Local\Temp\RSP5901.tmp" 
+Creating temporary file "C:\Users\Elev\AppData\Local\Temp\RSP5902.tmp" with contents
 [
-/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/NativeDumper.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"D:\NewProjects\Native\NativeDumper\StdAfx.cpp"
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/NativeDumper.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\ProjectNew\Native\NativeDumper\StdAfx.cpp"
 ]
-Creating command line "cl.exe @C:\Users\Mihai\AppData\Local\Temp\RSPA491.tmp" 
-Creating temporary file "C:\Users\Mihai\AppData\Local\Temp\RSPA492.tmp" with contents
+Creating command line "cl.exe @C:\Users\Elev\AppData\Local\Temp\RSP5902.tmp" 
+Creating temporary file "C:\Users\Elev\AppData\Local\Temp\RSP5903.tmp" with contents
 [
-/nologo /subsystem:windows /incremental:yes /pdb:"Debug/NativeDumper.pdb" /debug /machine:I386 /out:"Debug/NativeDumper.exe" /pdbtype:sept 
-.\Debug\DumpModuleDlg.obj
-.\Debug\GenericPurposeMethods.obj
-.\Debug\ModulesDlg.obj
-.\Debug\NativeDumper.obj
-.\Debug\NativeDumperDlg.obj
-.\Debug\NewEdit.obj
-.\Debug\StdAfx.obj
-.\Debug\NativeDumper.res
+/nologo /subsystem:windows /incremental:no /pdb:"Release/NativeDumper.pdb" /machine:I386 /out:"Release/NativeDumper.exe" 
+.\Release\DumpModuleDlg.obj
+.\Release\GenericPurposeMethods.obj
+.\Release\ModulesDlg.obj
+.\Release\NativeDumper.obj
+.\Release\NativeDumperDlg.obj
+.\Release\NewEdit.obj
+.\Release\StdAfx.obj
+.\Release\NativeDumper.res
 ]
-Creating command line "link.exe @C:\Users\Mihai\AppData\Local\Temp\RSPA492.tmp"
+Creating command line "link.exe @C:\Users\Elev\AppData\Local\Temp\RSP5903.tmp"
 <h3>Output Window</h3>
 Compiling resources...
 Compiling...
@@ -50,6 +50,62 @@ NativeDumperDlg.cpp
 NewEdit.cpp
 Generating Code...
 Linking...
+
+
+
+<h3>Results</h3>
+NativeDumper.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: NativeDumper - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x409 /fo"Debug/NativeDumper.res" /d "_DEBUG" /d "_AFXDLL" "D:\ProjectNew\Native\NativeDumper\NativeDumper.rc"" 
+Creating temporary file "C:\Users\Elev\AppData\Local\Temp\RSP5AD9.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/NativeDumper.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\ProjectNew\Native\NativeDumper\DumpModuleDlg.cpp"
+"D:\ProjectNew\Native\NativeDumper\GenericPurposeMethods.cpp"
+"D:\ProjectNew\Native\NativeDumper\ModulesDlg.cpp"
+"D:\ProjectNew\Native\NativeDumper\NativeDumper.cpp"
+"D:\ProjectNew\Native\NativeDumper\NativeDumperDlg.cpp"
+"D:\ProjectNew\Native\NativeDumper\NewEdit.cpp"
+]
+Creating command line "cl.exe @C:\Users\Elev\AppData\Local\Temp\RSP5AD9.tmp" 
+Creating temporary file "C:\Users\Elev\AppData\Local\Temp\RSP5ADA.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/NativeDumper.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\ProjectNew\Native\NativeDumper\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\Users\Elev\AppData\Local\Temp\RSP5ADA.tmp" 
+Creating temporary file "C:\Users\Elev\AppData\Local\Temp\RSP5ADB.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/NativeDumper.pdb" /debug /machine:I386 /out:"Debug/NativeDumper.exe" /pdbtype:sept 
+.\Debug\DumpModuleDlg.obj
+.\Debug\GenericPurposeMethods.obj
+.\Debug\ModulesDlg.obj
+.\Debug\NativeDumper.obj
+.\Debug\NativeDumperDlg.obj
+.\Debug\NewEdit.obj
+.\Debug\StdAfx.obj
+.\Debug\NativeDumper.res
+]
+Creating command line "link.exe @C:\Users\Elev\AppData\Local\Temp\RSP5ADB.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+DumpModuleDlg.cpp
+GenericPurposeMethods.cpp
+ModulesDlg.cpp
+NativeDumper.cpp
+NativeDumperDlg.cpp
+NewEdit.cpp
+Generating Code...
+Linking...
+Creating command line "bscmake.exe /nologo /o"Debug/NativeDumper.bsc"  .\Debug\StdAfx.sbr .\Debug\DumpModuleDlg.sbr .\Debug\GenericPurposeMethods.sbr .\Debug\ModulesDlg.sbr .\Debug\NativeDumper.sbr .\Debug\NativeDumperDlg.sbr .\Debug\NewEdit.sbr"
+Creating browse info file...
+<h3>Output Window</h3>
 
 
 

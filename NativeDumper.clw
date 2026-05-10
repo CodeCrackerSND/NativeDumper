@@ -11,7 +11,7 @@ ClassCount=5
 Class1=CNativeDumperApp
 Class2=CNativeDumperDlg
 
-ResourceCount=6
+ResourceCount=11
 Resource1=IDR_MAINFRAME
 Resource2=IDR_PROCESSMENU
 Class3=DumpModuleDlg
@@ -21,6 +21,11 @@ Class5=ModulesDlg
 Resource4=IDD_DUMPMODULEDLG_DIALOG
 Resource5=IDD_NATIVEDUMPER_DIALOG
 Resource6=IDR_MODULEMENU
+Resource7=IDR_PROCESSMENU (English (U.S.))
+Resource8=IDD_NATIVEDUMPER_DIALOG (English (U.S.))
+Resource9=IDD_DUMPMODULEDLG_DIALOG (English (U.S.))
+Resource10=IDD_MODULES (English (U.S.))
+Resource11=IDR_MODULEMENU (English (U.S.))
 
 [CLS:CNativeDumperApp]
 Type=0
@@ -107,6 +112,56 @@ ControlCount=1
 Control1=IDC_LIST1,SysListView32,1350631425
 
 [MNU:IDR_MODULEMENU]
+Type=1
+Class=?
+Command1=ID_MODULE_DUMP
+Command2=ID_MODULE_REFRESH
+CommandCount=2
+
+[DLG:IDD_NATIVEDUMPER_DIALOG (English (U.S.))]
+Type=1
+Class=?
+ControlCount=1
+Control1=IDC_LIST1,SysListView32,1350631425
+
+[DLG:IDD_MODULES (English (U.S.))]
+Type=1
+Class=?
+ControlCount=1
+Control1=IDC_LIST1,SysListView32,1350631425
+
+[DLG:IDD_DUMPMODULEDLG_DIALOG (English (U.S.))]
+Type=1
+Class=?
+ControlCount=18
+Control1=IDC_CHANGEEP,button,1342242819
+Control2=IDC_FixSizeOfImage,button,1342242819
+Control3=IDC_STATIC,static,1342308352
+Control4=IDC_NEWEntryPoint,edit,1350631552
+Control5=IDC_DumpBTN,button,1342242816
+Control6=IDC_STATUS_ST,static,1342308352
+Control7=IDC_ROUND_RAW_SIZE,button,1342242819
+Control8=IDC_ORIGINAL_RAW,button,1342308361
+Control9=IDC_RAW_EQ_VA,button,1342177289
+Control10=IDC_CALCULATE_RAW,button,1342177289
+Control11=IDC_SECTIONS_FROM_MEMORY,button,1342308361
+Control12=IDC_STATIC,button,1342177287
+Control13=IDC_SECTIONS_FROM_FILE,button,1342177289
+Control14=IDC_BUT_CURRENT_EIP,button,1342242816
+Control15=IDC_STATIC,button,1342177287
+Control16=IDC_FIX_PACKERS,button,1342242819
+Control17=IDC_STATIC,static,1342308352
+Control18=IDC_OLLYDEBUG,edit,1350631552
+
+[MNU:IDR_PROCESSMENU (English (U.S.))]
+Type=1
+Class=?
+Command1=ID_MODULES
+Command2=ID_DUMPMAINMODULE
+Command3=ID_REFRESH
+CommandCount=3
+
+[MNU:IDR_MODULEMENU (English (U.S.))]
 Type=1
 Class=?
 Command1=ID_MODULE_DUMP

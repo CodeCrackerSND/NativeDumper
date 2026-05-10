@@ -1,0 +1,28 @@
+RCPUREG - RAMODBG
++	className	0x0019dcf0 "CpuDbg"
+
+Class name
+ACPU
+ACPUREG
+ACPUINFO
+ACPUSTACK
+CPUDUMP
+ACPUASM
+
+AMODULE
+AMEMORY
+ATHREAD
+ABPOINT
+AWATCH
+AREF
+AWINDOWS
+AHANDLES
+ACALLSTK
+
+APATCH
+ASEH
+ALIST
+
+if the process to which that class belong
+is the parent of process
+

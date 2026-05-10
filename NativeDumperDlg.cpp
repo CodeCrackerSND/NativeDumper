@@ -6,7 +6,7 @@
 #include "NativeDumperDlg.h"
 #include "GenericPurposeMethods.h"
 
-#include "C:\Program Files (x86)\Microsoft SDK\include\Psapi.h"
+#include "Psapi.h"
 #pragma comment (lib, "Psapi.lib")
 
 #ifdef _DEBUG

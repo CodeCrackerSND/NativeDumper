@@ -22,6 +22,7 @@
 #define IDC_SECTIONS_FROM_FILE          1015
 #define IDC_BUT_CURRENT_EIP             1016
 #define IDC_FIX_PACKERS                 1017
+#define IDC_OLLYDEBUG                   1018
 #define ID_MODULES                      32771
 #define ID_DUMPMAINMODULE               32772
 #define ID_REFRESH                      32773
@@ -34,7 +35,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        133
 #define _APS_NEXT_COMMAND_VALUE         32776
-#define _APS_NEXT_CONTROL_VALUE         1018
+#define _APS_NEXT_CONTROL_VALUE         1019
 #define _APS_NEXT_SYMED_VALUE           105
 #endif
 #endif

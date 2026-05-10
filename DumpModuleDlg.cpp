@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <tchar.h>
 #include <winerror.h>
+#include <tlhelp32.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -108,6 +109,11 @@ BOOL DumpModuleDlg::OnInitDialog()
 
 	GetDlgItem(IDC_NEWEntryPoint)->SetWindowText(epaddress);
 
+	if (IsDebuggedByOlly())
+		GetDlgItem(IDC_OLLYDEBUG)->SetWindowText("Yes");
+	else
+		GetDlgItem(IDC_OLLYDEBUG)->SetWindowText("No");
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -149,7 +155,8 @@ return EntryPointAddress;
  * return:
  *     Success      thread id
  *     Error        NULL
- */
+ /*
+
 DWORD DumpModuleDlg::GetMainThreadId(DWORD dwPid)
 {
     LPVOID lpTid;
@@ -175,6 +182,29 @@ DWORD DumpModuleDlg::GetMainThreadId(DWORD dwPid)
     CloseHandle(hProcess);
 
     return dwTid;
+}
+*/
+
+// https://www.codereversing.com/archives/151
+DWORD DumpModuleDlg::GetMainThreadId(DWORD dwPid)
+{
+	HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, dwPid);
+
+	THREADENTRY32 threadEntry = { 0 };
+	threadEntry.dwSize = sizeof(THREADENTRY32);
+	Thread32First(hSnapshot, &threadEntry);
+
+	do
+	{
+		if (threadEntry.th32OwnerProcessID == dwPid)
+		{
+			CloseHandle(hSnapshot);
+			return threadEntry.th32ThreadID;
+		}
+	} while (Thread32Next(hSnapshot, &threadEntry));
+
+	CloseHandle(hSnapshot);
+	return -1;
 }
 
 void DumpModuleDlg::OnDumpBTN() 
@@ -227,9 +257,12 @@ void DumpModuleDlg::OnDumpBTN()
 unsigned int DumpModuleDlg::GetEIPRegister()
 {
 DWORD thread_id = GetMainThreadId(processid);
-unsigned int entrypoint = thread_id;
-char epaddress[20];
-wsprintf(epaddress,"%X",entrypoint);  // convert number to hex string
+if (thread_id==0)
+	return 0;
+
+//unsigned int entrypoint = thread_id;
+//char epaddress[20];
+//wsprintf(epaddress,"%X",entrypoint);  // convert number to hex string
 
 typedef HANDLE (WINAPI *OPENTHREAD)(DWORD ,BOOL,DWORD);
 typedef BOOL (WINAPI *PINITIALIZECONTEXT)(PVOID Buffer, DWORD ContextFlags, PCONTEXT* Context, PDWORD ContextLength);
@@ -239,9 +272,11 @@ OPENTHREAD m_OpenThread =(OPENTHREAD)GetProcAddress(kernel32, "OpenThread");
 HANDLE hThread = m_OpenThread(THREAD_ALL_ACCESS,TRUE,thread_id);
 
 PCONTEXT Context;
+CONTEXT ctx;
 DWORD ContextSize = 0;
 PINITIALIZECONTEXT pfnInitializeContext = (PINITIALIZECONTEXT)GetProcAddress(kernel32, "InitializeContext");
-ContextSize = 0;
+if (pfnInitializeContext!=NULL)
+{
 int Success = pfnInitializeContext(NULL, CONTEXT_FULL, NULL, &ContextSize);
 
 PVOID Buffer = malloc(ContextSize);
@@ -249,12 +284,20 @@ Success = pfnInitializeContext(Buffer,
 CONTEXT_FULL,
 &Context,
 &ContextSize);
+}
+else
+{
+	// Windows XP
+	ctx.ContextFlags = CONTEXT_FULL;
+	int contextOk = GetThreadContext(hThread, &ctx);
+	CloseHandle(hThread);
+	return ctx.Eip;
+}
 
 int contextOk = GetThreadContext(hThread, Context);
 
-unsigned int eip = Context->Eip;
-
-return eip;
+CloseHandle(hThread);
+return Context->Eip;
 }
 
 void DumpModuleDlg::LastErrorDisplay() 
@@ -746,6 +789,148 @@ return modulesize;
 
 }
 
+// Detection start:
+int ClassesFound = 0;
+DWORD ParentPid = 0;
+bool IsOllyDebugged = false;
+
+void removeFirstChar(char* str)
+{
+    int len = strlen(str);
+
+    if (len > 0)
+	{
+        // Shift all characters one position to the left
+        for (int i = 0; i < len; ++i)
+            str[i] = str[i + 1];
+        
+    }
+}
+
+BOOL CALLBACK EnumChildProc(HWND hwnd, LPARAM lParam)
+{
+    char className[256];
+    GetClassName(hwnd, className, sizeof(className));
+	removeFirstChar(className);
+	
+	if (stricmp(className, "CPU") == 0)
+		ClassesFound++;
+	else if (stricmp(className, "CPUREG") == 0)
+		ClassesFound++;
+	else if (stricmp(className, "CPUINFO") == 0)
+		ClassesFound++;
+	else if (stricmp(className, "CPUSTACK") == 0)
+		ClassesFound++;
+	else if (stricmp(className, "CPUDUMP") == 0)
+		ClassesFound++;
+	else if (stricmp(className, "CPUASM") == 0)
+		ClassesFound++;
+	else if (stricmp(className, "MODULE") == 0)
+		ClassesFound++;
+	else if (stricmp(className, "MEMORY") == 0)
+		ClassesFound++;
+	else if (stricmp(className, "THREAD") == 0)
+		ClassesFound++;
+	else if (stricmp(className, "BPOINT") == 0)
+		ClassesFound++;
+	else if (stricmp(className, "WATCH") == 0)
+		ClassesFound++;
+	else if (stricmp(className, "REF") == 0)
+		ClassesFound++;
+	else if (stricmp(className, "WINDOWS") == 0)
+		ClassesFound++;
+	else if (stricmp(className, "HANDLES") == 0)
+		ClassesFound++;
+	else if (stricmp(className, "CALLSTK") == 0)
+		ClassesFound++;
+	else if (stricmp(className, "PATCH") == 0)
+		ClassesFound++;
+	else if (stricmp(className, "SEH") == 0)
+		ClassesFound++;
+	else if (stricmp(className, "LIST") == 0)
+		ClassesFound++;
+    return TRUE; // continue enumeration
+}
+
+BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM lParam)
+{
+    char className[256];
+	DWORD pid;
+    GetClassName(hwnd, className, sizeof(className));
+
+	GetWindowThreadProcessId(hwnd, &pid);
+	if (pid==ParentPid)
+	{
+	
+	if (lstrcmpi(className, "CpuDbg") == 0)
+	{
+		IsOllyDebugged = false;  // if CpuDbg doesn't act strange
+		return FALSE;  // do not continue enumeration
+	}
+
+	if (lstrcmpi(className, "OLLYDBG") == 0)
+	{
+		IsOllyDebugged = true;
+		return FALSE;  // do not continue enumeration
+	}
+
+	if (lstrcmpi(className, "RAMODBG") == 0)
+	{
+		IsOllyDebugged = true;
+		return FALSE;  // do not continue enumeration
+	}
+
+
+	EnumChildWindows(hwnd, EnumChildProc, 0);
+
+	}
+
+
+    return TRUE; // continue enumeration
+}
+
+DWORD GetParentProcessId(DWORD pid)
+{
+    PROCESSENTRY32 pe;
+    HANDLE hSnap;
+    DWORD parentPid = 0;
+
+    hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+    if (hSnap == INVALID_HANDLE_VALUE)
+        return 0;
+
+    pe.dwSize = sizeof(PROCESSENTRY32);
+
+    if (Process32First(hSnap, &pe))
+    {
+        do
+        {
+            if (pe.th32ProcessID == pid)
+            {
+                parentPid = pe.th32ParentProcessID;
+                break;
+            }
+        } while (Process32Next(hSnap, &pe));
+    }
+
+    CloseHandle(hSnap);
+    return parentPid;
+}
+
+bool DumpModuleDlg::IsDebuggedByOlly()
+{
+IsOllyDebugged = false;
+ClassesFound = 0;
+ParentPid = GetParentProcessId(processid);
+
+::EnumWindows(EnumWindowsProc, 0);
+
+if (ClassesFound>=8)
+	IsOllyDebugged = true;
+
+return IsOllyDebugged;
+}
+
 void DumpModuleDlg::OnButCurrentEip() 
 {
 	// TODO: Add your control notification handler code here
@@ -757,8 +942,13 @@ void DumpModuleDlg::OnButCurrentEip()
 	else if(current_EIP>((unsigned int)hMod+module_size))
 	GetDlgItem(IDC_STATUS_ST)->SetWindowText("EIP after (module_base+module_size)!");
 	else  // convert EIP to RVA
+	{
 	current_EIP = current_EIP-(unsigned int)hMod;
+	if (IsDebuggedByOlly())
+		current_EIP--;
 	
+	}
+
 	char str_EIP[20];
 	wsprintf(str_EIP,"%X",current_EIP);  // convert number to hex string
 	GetDlgItem(IDC_NEWEntryPoint)->SetWindowText(str_EIP);

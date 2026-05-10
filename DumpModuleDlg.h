@@ -24,6 +24,7 @@ public:
 	unsigned int GetEIPRegister();
 	unsigned int GetEntryPoint();
 	void LastErrorDisplay();
+	bool IsDebuggedByOlly();
 
 	int processid;
 	CString processname;

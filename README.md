@@ -1,2 +1,0 @@
-# NativeDumper
-Native module dumper
